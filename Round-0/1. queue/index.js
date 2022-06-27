@@ -14,6 +14,35 @@
     q.enqueue(5); // queue is now [1, 5]
     q.dequeue(); // queue is now [5]
 */
-class Queue {}
+class Queue {
+
+    constructor() {
+        this.data = [];
+      }
+
+
+enqueue(value){
+    this.data.push(value);
+}
+
+dequeue(){
+    this.data.shift(value);
+}
+
+rear(){
+   return this.data[this.data.length-1]
+}
+
+front(){
+    return this.data.length
+}
+size(){
+    return this.data.length
+}
+
+
+}
+
+
 
 module.exports = Queue;
