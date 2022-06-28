@@ -14,8 +14,37 @@
     function that gets called with each element in the tree
 */
 
-class Node {}
+class Node {
+    constructor(data){
+        this.data=data
+        this.children=[]
+    }
 
-class Tree {}
+    push(data){
+        this.children.push(data)
+    }
+
+    remove(data){
+    
+
+
+    }
+}
+
+class Tree {
+
+constructor(){
+    this.root =null;
+
+}
+traverseBF(){
+
+}
+traverseDF(){
+    
+}
+
+
+}
 
 module.exports = { Tree, Node };
