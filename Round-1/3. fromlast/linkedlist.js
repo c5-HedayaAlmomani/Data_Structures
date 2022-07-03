@@ -1,59 +1,43 @@
-// --- Directions
-// Implement classes Node and Linked Lists
-// See "directions" document
-
 class Node {
-  constructor(data, node = null) {
+  constructor(data, next = null) {
     this.data = data;
-    this.next = node;
+    this.next = next;
   }
 }
-/* this:{
-    head:null;
-    data:data;
-    next:{
-        data:data;
-        next:{
-            data:data;
-            next:....
-        }
-    }
-}
 
-
-
-*/
 class LinkedList {
   constructor() {
     this.head = null;
   }
 
   insertFirst(data) {
-    const newNode = new Node(data, this.head);
-    this.head = newNode;
+    this.head = new Node(data, this.head);
   }
+
   size() {
-    let count = 0;
-    let tempObj = this.head;
+    let counter = 0;
+    let node = this.head;
 
-    while (tempObj) {
-      count++;
-
-      tempObj = tempObj.next;
+    while (node) {
+      counter++;
+      node = node.next;
     }
-    return count;
+
+    return counter;
   }
 
   getFirst() {
     return this.head;
   }
+
   getLast() {
-    if (!this.next) {
+    if (!this.head) {
       return null;
     }
+
     let node = this.head;
     while (node) {
-      if (node.next === null) {
+      if (!node.next) {
         return node;
       }
       node = node.next;
@@ -65,13 +49,18 @@ class LinkedList {
   }
 
   removeFirst() {
+    if (!this.head) {
+      return;
+    }
+
     this.head = this.head.next;
   }
 
   removeLast() {
     if (!this.head) {
-      return null;
+      return;
     }
+
     if (!this.head.next) {
       this.head = null;
       return;
@@ -87,23 +76,27 @@ class LinkedList {
   }
 
   insertLast(data) {
-    if (!this.head) {
-      return this.insertFirst(data);
-    }
+    const last = this.getLast();
 
-    let last = this.getLast();
-    last.next = new Node(data);
+    if (last) {
+      // There are some existing nodes in our chain
+      last.next = new Node(data);
+    } else {
+      // The chain is empty!
+      this.head = new Node(data);
+    }
   }
 
   getAt(index) {
     let counter = 0;
     let node = this.head;
     while (node) {
-      if (index === counter) {
+      if (counter === index) {
         return node;
       }
-      node = node.next;
+
       counter++;
+      node = node.next;
     }
     return null;
   }
@@ -112,30 +105,42 @@ class LinkedList {
     if (!this.head) {
       return;
     }
+
     if (index === 0) {
-      return this.removeFirst();
-    }
-    const previous = this.getAt(index - 1);
-    if (!previous) {
+      this.head = this.head.next;
       return;
     }
-    previous.next = this.getAt(index + 1);
+
+    const previous = this.getAt(index - 1);
+    if (!previous || !previous.next) {
+      return;
+    }
+    previous.next = previous.next.next;
   }
 
   insertAt(data, index) {
-    if (index === 0) {
-      return this.insertFirst(data);
+    if (!this.head) {
+      this.head = new Node(data);
+      return;
     }
+
+    if (index === 0) {
+      this.head = new Node(data, this.head);
+      return;
+    }
+
     const previous = this.getAt(index - 1) || this.getLast();
-    const node = new Node(data, this.getAt(index));
+    const node = new Node(data, previous.next);
     previous.next = node;
   }
 
   forEach(fn) {
     let node = this.head;
+    let counter = 0;
     while (node) {
-      fn(node);
+      fn(node, counter);
       node = node.next;
+      counter++;
     }
   }
 
