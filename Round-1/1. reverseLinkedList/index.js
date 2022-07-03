@@ -16,21 +16,20 @@ const { LinkedList } = require("./linkedlist");
 
 const reverseLinkedList = (list) => {
 
-   let node = list;
-
-   while(node){
-      if(node.next ===null){
-           node.next===this.head;
-           this.head = node
-      }
-
-};
-
+const newList = new LinkedList();
+let node = list.head;
+while(node){
+      newList.insertFirst(node.data);
+      node =node.next
+      
+}
 return node
 }
-module.exports = reverseLinkedList;
+
 const list = new LinkedList();
 list.insertLast("a")
 list.insertLast("b")
-// list.insertLast("c")
-reverseLinkedList(list.head); 
+list.insertLast("c")
+reverseLinkedList(list); 
+
+module.exports = reverseLinkedList;
