@@ -23,8 +23,11 @@ while(node){
       node =node.next
       
 }
-return node
+console.log(newList);
+return newList
+
 }
+//////////////////////////////
 
 const list = new LinkedList();
 list.insertLast("a")
