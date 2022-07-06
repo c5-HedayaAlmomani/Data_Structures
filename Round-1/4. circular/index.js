@@ -14,10 +14,30 @@
       -  circular(list); --> true
 */
 
-const {LinkedList} = require("./linkedlist");
+const { LinkedList } = require("./linkedlist");
+const { Node } = require("./linkedlist");
 
 const circular = (list) => {
-  // TODO: your code here
+let first = list;
+let second = list;
+while(second.next && second.next.next){
+  first = first.next ;
+  second = second.next.next;
+  if(first ===second){
+    return true
+  }
+}
+return false;
 };
+ const list = new LinkedList();
+const a = new Node("a");
+const b = new Node("b");
+const c = new Node("c");
+list.head = a;
+a.next = b;
+b.next = c;
+c.next = b;
+console.log(circular(list));
 
+console.log("hhhhhhhhhhhhhhh");
 module.exports = circular;
