@@ -13,6 +13,8 @@
     on the tree class.  Each method should accept a
     function that gets called with each element in the tree
 */
+// node :{data :data , children :[]}
+// node :{data:data , children:[{data:data , children:[...]} , {data:data , children:[...]}]}
 
 class Node {
     constructor(data){
@@ -20,15 +22,15 @@ class Node {
         this.children=[]
     }
 
-    push(data){
-        this.children.push(data)
-    }
+ add(data){
+    this.children.push(data)
+ }
 
-    remove(data){
-    
-
-
-    }
+ remove(data){
+    this.children = this.children.filter((element , index)=>{
+        return (element.data!==data)
+    })
+ }
 }
 
 class Tree {

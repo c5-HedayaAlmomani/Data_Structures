@@ -34,7 +34,7 @@ rear(){
 }
 
 front(){
-    return this.data.length
+    return this.data[0]
 }
 size(){
     return this.data.length

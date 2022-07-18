@@ -41,7 +41,8 @@ s.push(5);  // stack is now [2, 5]
 s.peek();  // returns 2
 s.pop();  //  stack is now [2] 
 
-
+console.log('hhhhh');
+console.log(s.data);
 
 
 module.exports = Stack;

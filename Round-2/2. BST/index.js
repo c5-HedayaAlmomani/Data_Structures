@@ -15,6 +15,38 @@
         and return the Node in the tree with the same value.
 */
 
-class Node {}
+class Node {
+  constructor(data) {
+    this.data = data;
+    this.rigtht = null;
+    this.left = null;
+  }
+
+  insert(data) {
+    if (data < this.data && this.left) {
+      this.left.insert(data);
+    } else if (data < this.data) {
+      this.left = new Node(data);
+    } else if (data > this.data && this.rigtht) {
+      this.rigtht.insert(data);
+    } else if (data > this.data) {
+      this.rigtht = new Node(data);
+    }
+  }
+
+  contains(data) {
+    if (this.data == data) {
+      return this;
+    }
+
+    if (data > this.data && this.rigtht) {
+      return this.rigtht.contains(data);
+    } else if (data < this.data && this.left) {
+      return this.left.contains(data);
+    }
+
+    return "not found ";
+  }
+}
 
 module.exports = Node;
